@@ -25,13 +25,13 @@ begin
 
       if LCompareResult < 0 then
       begin
-        WriteLn('  - Source file newer, Source=' +  LCopyItem.SourceVersion + ' > Destination='  + LCopyItem.DestinationVersion);
+        WriteLn('  - Source file newer, [Source=' +  LCopyItem.SourceVersion + '] > [Destination='  + LCopyItem.DestinationVersion + ']');
 
       end
       else if LCompareResult > 0 then
-        WriteLn('  - Destination file newer, Source=' +  LCopyItem.SourceVersion + ' < Destination='  + LCopyItem.DestinationVersion)
+        WriteLn('  - Destination file newer, [Source=' +  LCopyItem.SourceVersion + '] < [Destination='  + LCopyItem.DestinationVersion + ']')
       else
-        WriteLn('  - Versions are equal, Source=' +  LCopyItem.SourceVersion + ' == Destination='  + LCopyItem.DestinationVersion);
+        WriteLn('  - Versions are equal, [Source=' +  LCopyItem.SourceVersion + '] == [Destination='  + LCopyItem.DestinationVersion + ']');
     end
     else
     begin
@@ -40,10 +40,6 @@ begin
       WriteLn('  ' +  LErrorString);
       WriteLn('');
     end;
-
-{$IFDEF DEBUG}
-    ReadLn;;
-{$ENDIF}
   except
     on E: Exception do
     begin
@@ -51,4 +47,9 @@ begin
       ExitCode := 666;
     end;
   end;
+
+// If debug version, wait for user input
+{$IFDEF DEBUG}
+  ReadLn;
+{$ENDIF}
 end.
