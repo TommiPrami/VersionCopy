@@ -31,8 +31,7 @@ begin
       else if LCompareResult > 0 then
         WriteLn('  - Destination file newer, Source=' +  LCopyItem.SourceVersion + ' < Destination='  + LCopyItem.DestinationVersion)
       else
-        WriteLn('  - Versions are equal, Source=' +  LCopyItem.SourceVersion + ' =
-        + Destination='  + LCopyItem.DestinationVersion);
+        WriteLn('  - Versions are equal, Source=' +  LCopyItem.SourceVersion + ' == Destination='  + LCopyItem.DestinationVersion);
     end
     else
     begin
