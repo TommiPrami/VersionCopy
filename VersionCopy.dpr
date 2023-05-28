@@ -41,14 +41,14 @@ begin
 
       LCompareResult := CompareVersionNumbers(LCopyItem.SourceVersion, LCopyItem.DestinationVersion);
 
-      if LCompareResult < 0 then
+      if LCompareResult > 0 then
       begin
         WriteLn('  - Source file newer, [Source=' +  LCopyItem.SourceVersion + '] > [Destination='  + LCopyItem.DestinationVersion + ']');
 
         if DoCopy(LCopyItem, LErrorString) then
           WriteLn('  - Source file copied successfully to: "' + LCopyItem.DestinationPath + '"');
       end
-      else if LCompareResult > 0 then
+      else if LCompareResult < 0 then
         WriteLn('  - Destination file newer, [Source=' +  LCopyItem.SourceVersion + '] < [Destination='  + LCopyItem.DestinationVersion + ']')
       else
         WriteLn('  - Versions are equal, [Source=' +  LCopyItem.SourceVersion + '] == [Destination='  + LCopyItem.DestinationVersion + ']');
