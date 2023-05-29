@@ -28,6 +28,16 @@ begin
   end;
 end;
 
+function MessageByCompareResult(const ACopyItem: TCopyItem; const ACompareResult: Integer): string;
+begin
+  if ACompareResult > 0 then
+    Result := '  - Source file newer, [Source=' +  ACopyItem.SourceVersion + '] > [Destination='  + ACopyItem.DestinationVersion + ']'
+  else if ACompareResult < 0 then
+    Result := '  - Destination file newer, [Source=' +  ACopyItem.SourceVersion + '] < [Destination='  + ACopyItem.DestinationVersion + ']'
+  else
+    Result := '  - Versions are equal, [Source=' +  ACopyItem.SourceVersion + '] == [Destination='  + ACopyItem.DestinationVersion + ']';
+end;
+
 var
   LCopyItem: TCopyItem;
   LErrorString: string;
@@ -40,18 +50,10 @@ begin
       LCopyItem.DestinationVersion := GetFileVersion(LCopyItem.DestinationFullFilename);
 
       LCompareResult := CompareVersionNumbers(LCopyItem.SourceVersion, LCopyItem.DestinationVersion);
+      WriteLn(MessageByCompareResult(LCopyItem, LCompareResult));
 
-      if LCompareResult > 0 then
-      begin
-        WriteLn('  - Source file newer, [Source=' +  LCopyItem.SourceVersion + '] > [Destination='  + LCopyItem.DestinationVersion + ']');
-
-        if DoCopy(LCopyItem, LErrorString) then
-          WriteLn('  - Source file copied successfully to: "' + LCopyItem.DestinationPath + '"');
-      end
-      else if LCompareResult < 0 then
-        WriteLn('  - Destination file newer, [Source=' +  LCopyItem.SourceVersion + '] < [Destination='  + LCopyItem.DestinationVersion + ']')
-      else
-        WriteLn('  - Versions are equal, [Source=' +  LCopyItem.SourceVersion + '] == [Destination='  + LCopyItem.DestinationVersion + ']');
+      if (LCompareResult > 0) and DoCopy(LCopyItem, LErrorString) then
+        WriteLn('  - Source file copied successfully to: "' + LCopyItem.DestinationPath + '"');
     end
     else
     begin
