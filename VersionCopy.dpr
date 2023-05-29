@@ -70,8 +70,11 @@ begin
     end;
   end;
 
-// If debug version, wait for user input
 {$IFDEF DEBUG}
+  // If debug version, wait for user input
+  WriteLn('');
+  WriteLn('Press enter to exit');
+
   ReadLn;
 {$ENDIF}
 end.
