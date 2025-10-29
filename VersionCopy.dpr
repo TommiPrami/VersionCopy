@@ -44,7 +44,7 @@ var
   LCompareResult: Integer;
 begin
   try
-    if ParseCommadLine(LCopyItem, LErrorString) then
+    if ParseCommandLine(LCopyItem, LErrorString) then
     begin
       LCopyItem.SourceVersion := GetFileVersion(LCopyItem.SourceFullFilename);
       LCopyItem.DestinationVersion := GetFileVersion(LCopyItem.DestinationFullFilename);

@@ -5,14 +5,14 @@ interface
 uses
   VersionUnit.Types;
 
-  function ParseCommadLine(var ACopyItem: TCopyItem; out AErrorString: string): Boolean;
+  function ParseCommandLine(var ACopyItem: TCopyItem; out AErrorString: string): Boolean;
 
 implementation
 
 uses
   System.SysUtils;
 
-function ParseCommadLine(var ACopyItem: TCopyItem; out AErrorString: string): Boolean;
+function ParseCommandLine(var ACopyItem: TCopyItem; out AErrorString: string): Boolean;
 const
   COMMAND_LINE_EXAMPLE = 'VersionCopy.exe [Path\]SourceFileName DestinationPath';
 var
