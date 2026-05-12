@@ -23,7 +23,7 @@ begin
       Result := False;
 
       AErrorString := Format('Exception %s occurred while copying file "%s" with error message: "%S" ', [E.ClassName,
-        ACopyItem.SourceFullFilename, E.Message])
+        ACopyItem.SourceFullFilename, E.Message]);
     end;
   end;
 end;
